@@ -1,3 +1,14 @@
-<pre>
-  {{ homes$ | async | json }}
-</pre>
+<div class="uk-container uk-padding">
+  <h1>Homes</h1>
+  <div *ngFor="let home of homes$ | async">
+    <div class="uk-card">
+      <div class="uk-card-media-top">
+        <img src="{{ home.image_url }}" alt="{{ home.title }}" />
+      </div>
+      <div class="uk-card-body">
+        <div>{{ home.type }} / {{ home.location }}</div>
+        <div>{{ home.title }}</div>
+      </div>
+    </div>
+  </div>
+</div>
