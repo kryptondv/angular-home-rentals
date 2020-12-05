@@ -8,8 +8,13 @@ import { DataService } from '../data.service';
 })
 export class HomesComponent implements OnInit {
   homes$ = this.dataService.getHomes();
+  homeTypeDropdownOpen = false;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
+
+  togggleHomeTypeDropdown() {
+    this.homeTypeDropdownOpen = !this.homeTypeDropdownOpen;
+  }
 }

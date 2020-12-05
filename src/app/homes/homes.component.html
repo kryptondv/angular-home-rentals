@@ -5,9 +5,16 @@
     <div>
       <button
         class="uk-button uk-button-default uk-button-small uk-text-nowrap"
+        (click)="togggleHomeTypeDropdown()"
       >
         Home Type
       </button>
+      <div
+        *ngIf="homeTypeDropdownOpen"
+        class="uk-dropdown uk-open uk-width-medium"
+      >
+        <app-home-type-filter></app-home-type-filter>
+      </div>
     </div>
     <div>
       <button
