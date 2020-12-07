@@ -34,4 +34,8 @@ export class HomesComponent implements OnInit {
     this.homeTypeDropdownOpen = false;
     this.router.navigate(['homes'], { queryParams: { 'home-type': filters } });
   }
+
+  searchApplied(searchTerm: string) {
+    this.router.navigate(['homes'], { queryParams: { search: searchTerm } });
+  }
 }
