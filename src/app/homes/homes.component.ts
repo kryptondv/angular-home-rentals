@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -8,12 +8,21 @@ import { DataService } from '../data.service';
   styleUrls: ['./homes.component.scss'],
 })
 export class HomesComponent implements OnInit {
-  homes$ = this.dataService.getHomes();
+  homes$ = this.dataService.homes$;
   homeTypeDropdownOpen = false;
 
-  constructor(private dataService: DataService, private router: Router ) {}
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const homeTypeFilters = params['home-type'] || [];
+      this.dataService.loadHomes(homeTypeFilters);
+    });
+  }
 
   togggleHomeTypeDropdown() {
     this.homeTypeDropdownOpen = !this.homeTypeDropdownOpen;
