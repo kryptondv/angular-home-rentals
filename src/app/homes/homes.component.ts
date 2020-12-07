@@ -21,7 +21,10 @@ export class HomesComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const homeTypeFilters = params['home-type'] || [];
-      this.dataService.loadHomes(homeTypeFilters);
+      console.log(params);
+
+      const searchTerm = params.search || '';
+      this.dataService.loadHomes(homeTypeFilters, searchTerm);
       this.currentHomeTypeFilters = homeTypeFilters;
     });
   }
@@ -32,10 +35,16 @@ export class HomesComponent implements OnInit {
 
   homeTypeFilterApplied(filters: string[]) {
     this.homeTypeDropdownOpen = false;
-    this.router.navigate(['homes'], { queryParams: { 'home-type': filters } });
+    const params = this.route.snapshot.queryParams;
+    this.router.navigate(['homes'], {
+      queryParams: { ...params, 'home-type': filters },
+    });
   }
 
   searchApplied(searchTerm: string) {
-    this.router.navigate(['homes'], { queryParams: { search: searchTerm } });
+    const params = this.route.snapshot.queryParams;
+    this.router.navigate(['homes'], {
+      queryParams: { ...params, search: searchTerm },
+    });
   }
 }
