@@ -11,6 +11,7 @@ export class HomesComponent implements OnInit {
   homes$ = this.dataService.homes$;
   homeTypeDropdownOpen = false;
   currentHomeTypeFilters = [];
+  currentSearch = '';
 
   constructor(
     private dataService: DataService,
@@ -21,11 +22,10 @@ export class HomesComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const homeTypeFilters = params['home-type'] || [];
-      console.log(params);
-
       const searchTerm = params.search || '';
       this.dataService.loadHomes(homeTypeFilters, searchTerm);
       this.currentHomeTypeFilters = homeTypeFilters;
+      this.currentSearch = searchTerm;
     });
   }
 
