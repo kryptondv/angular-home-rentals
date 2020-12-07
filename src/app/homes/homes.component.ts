@@ -10,6 +10,7 @@ import { DataService } from '../data.service';
 export class HomesComponent implements OnInit {
   homes$ = this.dataService.homes$;
   homeTypeDropdownOpen = false;
+  currentHomeTypeFilters = [];
 
   constructor(
     private dataService: DataService,
@@ -21,6 +22,7 @@ export class HomesComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       const homeTypeFilters = params['home-type'] || [];
       this.dataService.loadHomes(homeTypeFilters);
+      this.currentHomeTypeFilters = homeTypeFilters;
     });
   }
 

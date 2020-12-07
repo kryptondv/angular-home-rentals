@@ -6,6 +6,7 @@
       <button
         class="uk-button uk-button-default uk-button-small uk-text-nowrap"
         (click)="togggleHomeTypeDropdown()"
+        [ngClass]="{'uk-button-primary': currentHomeTypeFilters.length > 0}"
       >
         Home Type
       </button>
@@ -14,6 +15,7 @@
         class="uk-dropdown uk-open uk-width-medium"
       >
         <app-home-type-filter
+          [defaultFilters]="currentHomeTypeFilters"
           (applied)="homeTypeFilterApplied($event)"
         ></app-home-type-filter>
       </div>
