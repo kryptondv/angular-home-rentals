@@ -14,8 +14,6 @@ export class HomeTypeFilterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    console.log(this.defaultFilters)
-
     this.form = this.formBuilder.group({
       Apartment: [this.defaultFilters.includes('Apartment')],
       Room: [this.defaultFilters.includes('Room')],
